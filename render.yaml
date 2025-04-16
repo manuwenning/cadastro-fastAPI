@@ -2,10 +2,9 @@ services:
   - type: web
     name: cadastro-fastapi
     env: python
-    buildCommand: "pip install -r CadastroFastAPI/requirements.txt"
-    startCommand: "uvicorn CadastroFastAPI.main:app --host 0.0.0.0 --port 10000"
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "uvicorn main:app --host 0.0.0.0 --port 10000"
     rootDirectory: CadastroFastAPI
     envVars:
       - key: DATABASE_URL
-        value: "postgresql://postgres:LZZpPLET6iCt5ZFZ@db.ymarbpmondxgajrfnccr.supabase.co:5432/postgres"
-
+        value: "postgresql://postgres:LZZpPLET6iCt5ZFZ@db.ymarbpmondxgajrfnccr.supabase.co:5432/postgres?sslmode=require"
