@@ -7,4 +7,4 @@ services:
     rootDirectory: CadastroFastAPI
     envVars:
       - key: DATABASE_URL
-        value: "postgresql://postgres:LZZpPLET6iCt5ZFZ@db.ymarbpmondxgajrfnccr.supabase.co:5432/postgres?sslmode=require"
+        value: "postgresql://postgres.ymarbpmondxgajrfnccr:LZZpPLET6iCt5ZFZ@aws-0-us-east-1.pooler.supabase.com:6543/postgres"
