@@ -7,5 +7,5 @@ services:
     rootDirectory: CadastroFastAPI
     envVars:
       - key: DATABASE_URL
-        value: "postgresql://user:password@host:port/database"
+        value: "postgresql://postgres:LZZpPLET6iCt5ZFZ@db.ymarbpmondxgajrfnccr.supabase.co:5432/postgres"
 
