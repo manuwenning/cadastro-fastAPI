@@ -35,4 +35,4 @@ def consultar_cep(cep: str) -> dict:
             raise ValueError("CEP não encontrado.")
         return data
     else:
-        raise ValueError("Erro ao consultar o CEP. Verifique o formato ou a disponibilidade da API.")
+        raise ValueError("Erro ao consultar o CEP")
