@@ -1,12 +1,12 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
 from fastapi.responses import PlainTextResponse
 from schemas import IniciarCadastro, VerificarCadastro, CadastrarEndereco
 from models import User, Log
 from database import SessionLocal
 from services import enviar_codigo_verificacao, consultar_cep
-from utils import gerar_codigo_verificacao
+from utils import gerar_codigo_verificacao, verificar_token
 
-router = APIRouter()
+router = APIRouter(dependencies=[Depends(verificar_token)])
 
 @router.post("/usuarios/cadastro_inicial")
 def cadastro_inicial(user_data: IniciarCadastro):
