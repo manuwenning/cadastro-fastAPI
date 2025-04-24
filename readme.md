@@ -17,7 +17,7 @@ O processo é dividido em três etapas principais:
 - Após a validação, o usuário informa o **CEP**, e a API consulta automaticamente o endereço completo via integração com o ViaCEP.
 
 ⚠️ **Observações**:  
-- Nenhum sistema de autenticação foi adicionado para facilitar os testes.  
+- Foi adicionado um sistema de autenticação simples para facilitar os testes (os detalhes para testar são enviados no privado).  
 - Caso haja falha na geração ou envio do código por e-mail, é possível utilizar o **código 010101** como um *bypass* para avançar no processo.  
 - Todo o processo é registrado em **logs**.
 
@@ -57,10 +57,10 @@ uvicorn main:app --reload
 Envia o código de verificação para o e-mail informado.
 
 ```bash
-curl --location 'https://cadastro-fast-api.onrender.com/usuarios/cadastro_inicial' --header 'Content-Type: application/json' --data '{
-  "nome": "",
-  "email": ""
-}'
+curl --location 'https://cadastro-fast-api.onrender.com/usuarios/cadastro_inicial'   --header 'Authorization: Bearer token'   --header 'Content-Type: application/json'   --data '{
+    "nome": "João da Silva",
+    "email": "joao.silva@email.com"
+  }'
 ```
 
 ---
@@ -70,10 +70,10 @@ curl --location 'https://cadastro-fast-api.onrender.com/usuarios/cadastro_inicia
 Valida o código de verificação enviado por e-mail.
 
 ```bash
-curl --location 'https://cadastro-fast-api.onrender.com/usuarios/verificar_codigo' --header 'Content-Type: application/json' --data '{
-  "email": "",
-  "codigo": "010101"
-}'
+curl --location 'https://cadastro-fast-api.onrender.com/usuarios/verificar_codigo'   --header 'Authorization: Bearer token'   --header 'Content-Type: application/json'   --data '{
+    "email": "joao.silva@email.com",
+    "codigo": "010101"
+  }'
 ```
 
 ---
@@ -83,12 +83,12 @@ curl --location 'https://cadastro-fast-api.onrender.com/usuarios/verificar_codig
 Consulta endereço via CEP e finaliza o cadastro.
 
 ```bash
-curl --location 'https://cadastro-fast-api.onrender.com/usuarios/finalizar_cadastro' --header 'Content-Type: application/json' --data '{
-  "email": "",
-  "cep": "",
-  "numero": "",
-  "referencia": ""
-}'
+curl --location 'https://cadastro-fast-api.onrender.com/usuarios/finalizar_cadastro'   --header 'Authorization: Bearer token'   --header 'Content-Type: application/json'   --data '{
+    "email": "joao.silva@email.com",
+    "cep": "12345678",
+    "numero": "123",
+    "referencia": "próximo à praça central"
+  }'
 ```
 
 ---
@@ -97,7 +97,7 @@ curl --location 'https://cadastro-fast-api.onrender.com/usuarios/finalizar_cadas
 `DELETE /usuarios/delete/{email}`
 
 ```bash
-curl --location --globoff --request DELETE 'https://cadastro-fast-api.onrender.com/usuarios/delete/{email}'
+curl --location --globoff --request DELETE 'https://cadastro-fast-api.onrender.com/usuarios/delete/{email}'   --header 'Authorization: Bearer token'
 ```
 
 ---
@@ -106,7 +106,7 @@ curl --location --globoff --request DELETE 'https://cadastro-fast-api.onrender.c
 `GET /usuarios`
 
 ```bash
-curl --location 'https://cadastro-fast-api.onrender.com/usuarios'
+curl --location 'https://cadastro-fast-api.onrender.com/usuarios'   --header 'Authorization: Bearer token'
 ```
 
 ---
@@ -115,5 +115,5 @@ curl --location 'https://cadastro-fast-api.onrender.com/usuarios'
 `GET /logs`
 
 ```bash
-curl --location 'https://cadastro-fast-api.onrender.com/logs'
+curl --location 'https://cadastro-fast-api.onrender.com/logs'   --header 'Authorization: Bearer token'
 ```
